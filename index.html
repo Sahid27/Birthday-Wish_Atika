@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Happy Birthday Atika</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== START SCREEN ===================== -->
+<div id="startScreen">
+  <canvas id="confetti"></canvas>
+  <div class="start-inner">
+    <h1>🎉 Happy Birthday Atika 🎉</h1>
+    <span id="typedGreeting"></span>
+    <button class="golden-btn" id="startBtn">Start</button>
+  </div>
+</div>
+
+<!-- ===================== MAIN SCENE ===================== -->
+<div id="mainScene" style="display:none;">
+<div class="loading"></div>
+<audio class="song" controls loop style="position:relative;z-index:1000;">
+    <source src="assets/music.mp3">
+   Your browser isn't invited for super fun audio time.
+</audio>
+<div id="balloonsContainer"></div>
+
+<img src="assets/Balloon-Border.png" width="100%" class="balloon-border">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-xs-2 bulb-holder"><div class="bulb" id="bulb_yellow"></div></div>
+        <div class="col-md-2 col-xs-2 bulb-holder"><div class="bulb" id="bulb_red"></div></div>
+        <div class="col-md-2 col-xs-2 bulb-holder"><div class="bulb" id="bulb_blue"></div></div>
+        <div class="col-md-2 col-xs-2 bulb-holder"><div class="bulb" id="bulb_green"></div></div>
+        <div class="col-md-2 col-xs-2 bulb-holder"><div class="bulb" id="bulb_pink"></div></div>
+        <div class="col-md-2 col-xs-2 bulb-holder"><div class="bulb" id="bulb_orange"></div></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <img src="assets/banner.png" class="bannar">
+        </div>
+    </div>
+    <div class="row cake-cover">
+        <div class="col-md-12 texr-center">
+            <div class="cake">
+              <div class="velas">
+                <div class="fuego"></div>
+                <div class="fuego"></div>
+                <div class="fuego"></div>
+                <div class="fuego"></div>
+                <div class="fuego"></div>
+              </div>
+              <div class="cobertura"></div>
+              <div class="bizcocho"></div>
+            </div>
+            <div class="gifcake-wrap" id="gifcakeWrap">
+                <img src="assets/cake.gif" alt="cake">
+            </div>
+        </div>
+    </div>
+    <div class="row message">
+        <div class="col-md-12">
+            <p>শুভ জন্মদিন আতিকা 😄</p>
+            <p>সারাবছর যতই বলি...</p>
+            <p>আগে থেকে একটু একটু করে পড়েন</p>
+            <p>আপনি কানেই তোলেন না 😂</p>
+            <p>এখন পরীক্ষা এসে গেছে...</p>
+            <p>আর আপনি মহাফুরফুরে মেজাজে ফাঁকিবাজি করছেন</p>
+            <p>পরীক্ষার আগের দিন সব পড়ে ফেলার প্ল্যান, তাই না? 😅</p>
+            <p>ভণ্ডামি আর ফাঁকিবাজিতে অবশ্য আপনার জুড়ি নেই</p>
+            <p>মজা বাদ দিয়ে বলি...</p>
+            <p>এবার অন্তত একটু আগে থেকে পড়া শুরু করুন</p>
+            <p>নিজের জন্যই ভালো হবে</p>
+            <p>যাই হোক...</p>
+            <p>পরীক্ষাটা ভালো হোক</p>
+            <p>আর জন্মদিনটা আনন্দে কাটুক</p>
+            <p><strong>শুভ জন্মদিন আতিকা 🎉</strong></p>
+        </div>
+    </div>
+    <div class="navbar navbar-fixed-bottom">
+        <div class="row">
+            <div class="col-md-6 text-center col-md-offset-3">
+                <button class="btn btn-primary" id="turn_on">Turn On Lights</button>
+                <button class="btn btn-primary" id="play">Play Music</button>
+                <button class="btn btn-primary" id="bannar_coming">Let's Decorate</button>
+                <button class="btn btn-primary" id="balloons_flying">Fly With Balloons</button>
+                <button class="btn btn-primary" id="cake_fadein">Most Delicious Cake Ever</button>
+                <button class="btn btn-primary" id="light_candle"> Light Candle</button>
+                <button class="btn btn-primary" id="wish_message">Happy Birthday</button>
+                <button class="btn btn-primary" id="story">A message for you</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="assets/snowflakes.js"></script>
+<script src="assets/typed.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

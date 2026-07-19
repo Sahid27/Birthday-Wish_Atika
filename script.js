@@ -579,20 +579,18 @@ $('document').ready(function () {
 
 		var msgTotal = $('.message p').length;
 
-		function scrollMsgToBottom() {
-			var box = document.querySelector('.message');
-			if (box) { box.scrollTop = box.scrollHeight; }
-		}
-
 		function msgLoop(i) {
 			if (i > msgTotal) {
 				$('.cake').fadeIn('fast');
 				return;
 			}
-			$("p:nth-child(" + i + ")").fadeIn(500, scrollMsgToBottom);
+			var current = $("p:nth-child(" + i + ")");
+			current.fadeIn('slow');
 			setTimeout(function () {
-				msgLoop(i + 1);
-			}, 700);
+				current.fadeOut('slow', function () {
+					msgLoop(i + 1);
+				});
+			}, 2000);
 		}
 
 		msgLoop(1);

@@ -1710,3 +1710,133 @@ p {
   display:none; text-align:center; margin: 10px auto 0 auto; max-width:260px;
 }
 .gifcake-wrap img { width:100%; border-radius: 10px; }
+
+/* ============================================== RESPONSIVE / MOBILE FIXES
+*/
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.control-panel,
+.navbar-fixed-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar-fixed-bottom .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+}
+
+.navbar-fixed-bottom .col-md-6 {
+  width: 100%;
+  padding: 0 5px;
+}
+
+.navbar-fixed-bottom .btn-primary {
+  margin: 4px;
+  white-space: normal;
+}
+
+.cake {
+  max-width: 90vw;
+}
+
+.balloons {
+  width: 70px;
+  height: 128px;
+  background-size: 70px 128px;
+}
+
+.balloons h2 {
+  font-size: 32px;
+}
+
+@media only screen and (max-width: 768px) {
+  .start-inner h1 {
+    font-size: 30px;
+  }
+  #typedGreeting {
+    font-size: 16px;
+  }
+  .golden-btn {
+    padding: 12px 26px;
+    font-size: 18px;
+  }
+  .message {
+    margin-top: 120px;
+  }
+  .message p {
+    font-size: 20px;
+  }
+  .cake {
+    width: 220px;
+    height: 220px;
+    margin-left: -110px;
+  }
+  .navbar-fixed-bottom .btn-primary {
+    font-size: 12px;
+    padding: 8px;
+  }
+  .bulb {
+    width: 36px;
+    height: 36px;
+    background-size: 36px 36px;
+  }
+  .bulb-holder {
+    height: 50px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .start-inner h1 {
+    font-size: 22px;
+  }
+  #typedGreeting {
+    font-size: 14px;
+  }
+  .golden-btn {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+  .message p {
+    font-size: 15px;
+  }
+  .cake {
+    width: 160px;
+    height: 160px;
+    margin-left: -80px;
+  }
+  .navbar-fixed-bottom .btn-primary {
+    font-size: 11px;
+    padding: 6px;
+    margin: 2px;
+  }
+  .balloons {
+    width: 50px;
+    height: 92px;
+    background-size: 50px 92px;
+  }
+  .balloons h2 {
+    font-size: 22px;
+  }
+  .bulb {
+    width: 28px;
+    height: 28px;
+    background-size: 28px 28px;
+  }
+  .bulb-holder {
+    height: 40px;
+  }
+}

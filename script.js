@@ -424,27 +424,40 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// ==== Balloon / lights / cake / message flow (dynamic letters) ====
-// ==== Balloon letters: built dynamically from BALLOON_LETTERS ====
+// ==== Balloon / lights / cake / message flow (dynamic letters, two rows) ====
+// Row 1 (top): HBD -- Row 2 (below): the name
 var BALLOON_LETTERS = ["H", "B", "D", "A", "T", "I", "K", "A"];
+var BALLOON_PREFIX_COUNT = 3; // "H","B","D" go on the top row; the rest spell the name below
 var BALLOON_COLORS = ["#F2B300", "#0719D4", "#D14D39", "#8FAD00", "#8377E4", "#99C96A", "#20CFB4", "#E4589C", "#4CAF50", "#FF7043"];
 var BALLOON_IMAGES = ["assets/b1.png", "assets/b2.png", "assets/b3.png", "assets/b4.png", "assets/b5.png", "assets/b6.png", "assets/b7.png"];
 
+var BALLOON_ROW_TOP = [130, 280]; // top row / bottom (name) row vertical position
+
 var balloonIds = [];
+var balloonMeta = []; // { id, row, idxInRow, rowCount }
 (function buildBalloons() {
 	var container = document.getElementById('balloonsContainer');
-	BALLOON_LETTERS.forEach(function (letter, i) {
-		var id = 'b' + (i + 1);
-		balloonIds.push(id);
-		var div = document.createElement('div');
-		div.className = 'balloons text-center';
-		div.id = id;
-		div.style.backgroundImage = "url('" + BALLOON_IMAGES[i % BALLOON_IMAGES.length] + "')";
-		var h2 = document.createElement('h2');
-		h2.style.color = BALLOON_COLORS[i % BALLOON_COLORS.length];
-		h2.textContent = letter;
-		div.appendChild(h2);
-		container.appendChild(div);
+	var rows = [
+		BALLOON_LETTERS.slice(0, BALLOON_PREFIX_COUNT),
+		BALLOON_LETTERS.slice(BALLOON_PREFIX_COUNT)
+	];
+	var globalIndex = 0;
+	rows.forEach(function (rowLetters, rowIdx) {
+		rowLetters.forEach(function (letter, idxInRow) {
+			var id = 'b' + (globalIndex + 1);
+			balloonIds.push(id);
+			balloonMeta.push({ id: id, row: rowIdx, idxInRow: idxInRow, rowCount: rowLetters.length });
+			var div = document.createElement('div');
+			div.className = 'balloons text-center';
+			div.id = id;
+			div.style.backgroundImage = "url('" + BALLOON_IMAGES[globalIndex % BALLOON_IMAGES.length] + "')";
+			var h2 = document.createElement('h2');
+			h2.style.color = BALLOON_COLORS[globalIndex % BALLOON_COLORS.length];
+			h2.textContent = letter;
+			div.appendChild(h2);
+			container.appendChild(div);
+			globalIndex++;
+		});
 	});
 })();
 
@@ -457,28 +470,29 @@ $('document').ready(function () {
 	var vw;
 	var n = balloonIds.length;
 
-	function getSpacing() {
+	function getSpacing(rowCount) {
 		var windowWidth = $(window).width();
 		var maxSpacing = 100;
 		var minSpacing = 26;
 		var available = windowWidth - 20;
-		var spacing = available / n;
+		var spacing = available / rowCount;
 		return Math.max(minSpacing, Math.min(maxSpacing, spacing));
 	}
 
-	function offsetFor(i, spacing) {
-		return (i - (n - 1) / 2) * spacing;
+	function offsetFor(idxInRow, rowCount, spacing) {
+		return (idxInRow - (rowCount - 1) / 2) * spacing;
 	}
 
 	function layoutRow(idSuffix) {
 		vw = $(window).width() / 2;
-		var spacing = getSpacing();
-		var scale = Math.min(1, spacing / 100);
-		balloonIds.forEach(function (id, i) {
-			$('#' + id + idSuffix).css({
+		balloonMeta.forEach(function (meta) {
+			var spacing = getSpacing(meta.rowCount);
+			var scale = Math.min(1, spacing / 100);
+			var top = BALLOON_ROW_TOP[meta.row];
+			$('#' + meta.id + idSuffix).css({
 				transform: 'scale(' + scale + ')',
 				'transform-origin': 'center bottom'
-			}).animate({ top: 240, left: vw + offsetFor(i, spacing) }, 500);
+			}).animate({ top: top, left: vw + offsetFor(meta.idxInRow, meta.rowCount, spacing) }, 500);
 		});
 	}
 
@@ -563,6 +577,7 @@ $('document').ready(function () {
 			$('#' + id).attr('id', id + id);
 		});
 		balloonIds = balloonIds.map(function (id) { return id + id; });
+		balloonMeta.forEach(function (meta) { meta.id = meta.id + meta.id; });
 		layoutRow('');
 		$('.balloons').css('opacity', '0.9');
 		$('.balloons h2').fadeIn(3000);
